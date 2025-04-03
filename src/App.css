@@ -17,3 +17,19 @@
 .checklist-item input[type="checkbox"] {
   margin-right: 8px;
 }
+
+h1 {
+  font-size: 50px;
+  color: black;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+input, button {
+  font-size: 24px;
+}
+
+li {
+  font-size: 20px;
+}
+
