@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  margin: 2rem;
+}
+
+.checklist {
+  list-style-type: none;
+  padding: 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.checklist-item input[type="checkbox"] {
+  margin-right: 8px;
+}
