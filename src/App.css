@@ -31,5 +31,14 @@ input, button {
 
 li {
   font-size: 20px;
+  color: rgb(29, 142, 167);
+  font-weight: bold;
+  font-family: Arial, sans-serif;
 }
+
+li::before {
+  content: "🔥"; /* Adds an emoji or any symbol */
+  margin-right: 8px;
+}
+
 
