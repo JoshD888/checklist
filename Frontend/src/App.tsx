@@ -1,13 +1,74 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 
+// Task interface for the task manager
 interface Task {
   id: number;
   text: string;
   completed: boolean;
 }
 
-const App: React.FC = () => {
+// Login/Register Component
+const LoginRegister: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRegistering, setIsRegistering] = useState(true);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const endpoint = isRegistering
+      ? 'http://localhost:3001/api/users/register'
+      : 'http://localhost:3001/api/users/login';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+
+      if (response.ok) {
+        // Redirect to the task manager page on success
+        navigate('/tasks');
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>{isRegistering ? 'Register' : 'Login'}</h1>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button onClick={handleSubmit}>
+        {isRegistering ? 'Register' : 'Login'}
+      </button>
+      <button onClick={() => setIsRegistering(!isRegistering)}>
+        Switch to {isRegistering ? 'Login' : 'Register'}
+      </button>
+      {message && <p>{message}</p>}
+    </div>
+  );
+};
+
+// Task Manager Component
+const TaskManager: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [input, setInput] = useState<string>('');
 
@@ -62,6 +123,18 @@ const App: React.FC = () => {
         ))}
       </ul>
     </div>
+  );
+};
+
+// Main App Component
+const App: React.FC = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginRegister />} />
+        <Route path="/tasks" element={<TaskManager />} />
+      </Routes>
+    </Router>
   );
 };
 
