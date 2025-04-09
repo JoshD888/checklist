@@ -1,14 +1,3 @@
 [
-  {
-    "email": "test@example.com",
-    "password": "$2b$10$5NhRDeALpYzgAbX204CkFeEP3Y1VHiUwyUx5DHhSxsxBNU11yKWiu"
-  },
-  {
-    "email": "zswartz@gmail.com",
-    "password": "$2b$10$h9V7lN64pdQMjNNPR/K9YO1oxvQEZr2k3WbUUHLP63V/vtS34TW9q"
-  },
-  {
-    "email": "a",
-    "password": "$2b$10$TA4crzF6uG3mOHn4cec5DOXmpS2MdwBk5ORDg7piC2r/5xXKzlmyS"
-  }
+
 ]

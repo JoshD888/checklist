@@ -8,14 +8,30 @@ const router = express.Router();
 // Path to store user data (for simplicity, using a JSON file)
 const usersFilePath = path.join(__dirname, 'users.json');
 
-// Helper function to read/write users
+// Helper function to read users
 const readUsers = () => {
-  if (!fs.existsSync(usersFilePath)) return [];
-  return JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+  if (!fs.existsSync(usersFilePath)) {
+    console.log('users.json file does not exist. Creating a new one...');
+    fs.writeFileSync(usersFilePath, JSON.stringify([])); // Create an empty file if it doesn't exist
+    return [];
+  }
+  try {
+    const data = fs.readFileSync(usersFilePath, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error reading users.json:', error);
+    return [];
+  }
 };
 
+// Helper function to write users
 const writeUsers = (users) => {
-  fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+  try {
+    console.log('Writing users to users.json:', users); // Debugging log
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+  } catch (error) {
+    console.error('Error writing to users.json:', error);
+  }
 };
 
 // Route to register a new user
