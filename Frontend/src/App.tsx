@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 
-// Task interface for the task manager
 interface Task {
   id: number;
   text: string;
@@ -28,12 +27,9 @@ const LoginRegister: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await response.json();
       setMessage(data.message);
-
       if (response.ok) {
-        // Redirect to the task manager page on success
         navigate('/tasks');
       }
     } catch (error) {
@@ -42,27 +38,29 @@ const LoginRegister: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <h1>{isRegistering ? 'Register' : 'Login'}</h1>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleSubmit}>
-        {isRegistering ? 'Register' : 'Login'}
-      </button>
-      <button onClick={() => setIsRegistering(!isRegistering)}>
-        Switch to {isRegistering ? 'Login' : 'Register'}
-      </button>
-      {message && <p>{message}</p>}
+    <div className="container">
+      <div className="card">
+        <h1>{isRegistering ? 'Register' : 'Login'}</h1>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleSubmit} className="btn primary">
+          {isRegistering ? 'Register' : 'Login'}
+        </button>
+        <button onClick={() => setIsRegistering(!isRegistering)} className="btn secondary">
+          Switch to {isRegistering ? 'Login' : 'Register'}
+        </button>
+        {message && <p className="message">{message}</p>}
+      </div>
     </div>
   );
 };
@@ -98,30 +96,36 @@ const TaskManager: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Checklist App</h1>
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
-        placeholder="Add new task..."
-      />
-      <button onClick={addTask}>Add</button>
-      <ul className="checklist">
-        {tasks.map((task) => (
-          <li key={task.id} className="checklist-item">
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-            />
-            <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-              {task.text}
-            </span>
-          </li>
-        ))}
-      </ul>
+    <div className="container">
+      <div className="card tasks">
+        <h1>Checklist App</h1>
+        <div className="input-group">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Add new task..."
+          />
+          <button onClick={addTask} className="btn add">
+            Add
+          </button>
+        </div>
+        <ul className="checklist">
+          {tasks.map((task) => (
+            <li key={task.id} className="checklist-item">
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+              />
+              <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                {task.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
