@@ -130,14 +130,27 @@ const TaskManager: React.FC = () => {
   );
 };
 
-// Main App Component
+// Main App Component with Dark Mode Toggle
 const App: React.FC = () => {
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
+
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LoginRegister />} />
-        <Route path="/tasks" element={<TaskManager />} />
-      </Routes>
+      {/* Conditionally add the "dark" class based on darkMode state */}
+      <div className={darkMode ? 'dark' : ''}>
+        {/* Dark Mode Toggle Button, fixed in the upper right corner */}
+        <div style={{ position: 'fixed', top: 10, right: 10, zIndex: 1000 }}>
+          <button onClick={toggleDarkMode} className="btn secondary">
+            {darkMode ? 'Light Mode' : 'Dark Mode'}
+          </button>
+        </div>
+        <Routes>
+          <Route path="/" element={<LoginRegister />} />
+          <Route path="/tasks" element={<TaskManager />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
