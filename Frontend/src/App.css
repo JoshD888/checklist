@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f7f7f7;
+  background: #f0f4f8;
 }
 
 /* Center the container */
@@ -16,10 +16,10 @@ body {
 
 /* Card styling for forms and tasks */
 .card {
-  background: #fff;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(100, 100, 111, 0.1);
   width: 320px;
   text-align: center;
 }
@@ -27,7 +27,7 @@ body {
 /* Header Styling */
 .card h1 {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #34495e;
 }
 
 /* Inputs */
@@ -37,14 +37,16 @@ input[type="password"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  border: 1px solid #ccd6dd; /* soft gray */
   border-radius: 4px;
   transition: border-color 0.2s;
+  background-color: #fdfefe;
 }
 
 input:focus {
   outline: none;
-  border-color: #007BFF;
+  border-color: #a29bfe; /* soft purple */
+  box-shadow: 0 0 5px rgba(162, 155, 254, 0.5); /* purple glow */
 }
 
 /* Button Styling */
@@ -61,21 +63,21 @@ input:focus {
 }
 
 .btn.primary {
-  background-color: #007BFF;
+  background-color: #a29bfe;
   color: #fff;
 }
 
 .btn.primary:hover {
-  background-color: #0056b3;
+  background-color: #836fff;
 }
 
 .btn.secondary {
-  background-color: #6c757d;
+  background-color: #fab1a0;
   color: #fff;
 }
 
 .btn.secondary:hover {
-  background-color: #5a6268;
+  background-color: #f0938c;
 }
 
 /* Input group for task manager */
@@ -109,7 +111,7 @@ input:focus {
 /* Success Message */
 .message {
   margin-top: 1rem;
-  color: rgb(214, 43, 43);
+  color: #e17055;
   font-weight: bold;
 }
 
