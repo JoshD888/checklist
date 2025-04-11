@@ -101,11 +101,33 @@ input:focus {
 .checklist-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
   margin-bottom: 10px;
+  background: #f8f9fa; /* light background for each item */
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.checklist-item:hover {
+  background: #e9ecef;
+  transform: scale(1.02);
+}
+
+.checklist-item .task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .checklist-item input[type="checkbox"] {
   margin-right: 10px;
+}
+
+.checklist-item.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 /* Success Message */
@@ -164,7 +186,7 @@ input:focus {
 /* Dark mode buttons */
 .dark .btn.primary {
   background-color: #6c5ce7;
-  color: #fff;
+  color: #ffffff;
 }
 
 .dark .btn.primary:hover {
@@ -183,4 +205,21 @@ input:focus {
 /* Dark mode messages */
 .dark .message {
   color: #ff6b6b;
+}
+
+
+.dark .checklist-item {
+  background-color: #444;
+  color: #eee;
+}
+
+.dark .checklist-item:hover {
+  background-color: #555;
+}
+
+/* Ensure completed task text remains visible in dark mode */
+.dark .checklist-item.completed span {
+  color: #ccc;
+  opacity: 0.6;
+  text-decoration: line-through;
 }

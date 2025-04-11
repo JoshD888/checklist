@@ -113,15 +113,17 @@ const TaskManager: React.FC = () => {
         </div>
         <ul className="checklist">
           {tasks.map((task) => (
-            <li key={task.id} className="checklist-item">
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleTask(task.id)}
-              />
+            <li key={task.id} className={`checklist-item ${task.completed ? 'completed' : ''}`}>
+              <div className="task-item">
+                <input
+                  type="checkbox"
+                  checked={task.completed}
+                  onChange={() => toggleTask(task.id)}
+                />
               <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                 {task.text}
               </span>
+            </div>
             </li>
           ))}
         </ul>
